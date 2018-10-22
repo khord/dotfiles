@@ -2,7 +2,7 @@ execute pathogen#infect()
 set ruler
 set cursorline
 syntax on
-filetype plugin indent on
+filetype plugin on
 
 let g:solarized_termtrans = 1
 set background=dark
