@@ -19,3 +19,5 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 POWERLEVEL9K_TIME_BACKGROUND='grey50'
 POWERLEVEL9K_STATUS_VERBOSE=false
+
+alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
