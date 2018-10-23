@@ -1,4 +1,4 @@
-PATH=$PATH:/Applications/VMware\ OVF\ Tool
+PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path
 
 export ZSH="/Users/khord/.oh-my-zsh"
 
