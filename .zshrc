@@ -1,4 +1,4 @@
-PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path
+PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin
 
 export ZSH="/Users/khord/.oh-my-zsh"
 
