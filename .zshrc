@@ -22,3 +22,6 @@ POWERLEVEL9K_STATUS_VERBOSE=false
 
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
+
+# opam configuration
+test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
