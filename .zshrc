@@ -1,6 +1,7 @@
 PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin
 
 export ZSH="/Users/khord/.oh-my-zsh"
+export HISTCONTROL=ignorespace
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="agnoster"
