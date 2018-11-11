@@ -1,4 +1,4 @@
-PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin
+PATH=$PATH:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin
 
 export ZSH="/Users/khord/.oh-my-zsh"
 export HISTCONTROL=ignorespace
@@ -21,10 +21,5 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 POWERLEVEL9K_TIME_BACKGROUND='grey50'
 POWERLEVEL9K_STATUS_VERBOSE=false
 
-alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
-alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
 alias c="clear"
 alias z=". ~/.zshrc"
-
-# opam configuration
-test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
