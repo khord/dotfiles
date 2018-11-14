@@ -21,6 +21,5 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
 POWERLEVEL9K_TIME_BACKGROUND='grey50'
 POWERLEVEL9K_STATUS_VERBOSE=false
 
-alias c="clear"
 alias z=". ~/.zshrc"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
