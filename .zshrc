@@ -22,4 +22,5 @@ POWERLEVEL9K_TIME_BACKGROUND='grey50'
 POWERLEVEL9K_STATUS_VERBOSE=false
 
 alias z=". ~/.zshrc"
+alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
