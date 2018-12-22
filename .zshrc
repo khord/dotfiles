@@ -26,6 +26,7 @@ alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
 alias z=". ~/.zshrc"
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); echo $extip && whois $extip | awk '\''/Organization|org-name/ {$1=""; print substr($0,2)}'\'''
+newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 
 
 # opam configuration
