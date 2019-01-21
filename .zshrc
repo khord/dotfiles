@@ -24,4 +24,4 @@ POWERLEVEL9K_STATUS_VERBOSE=false
 alias .z=". ~/.zshrc"
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); echo $extip && whois $extip | awk '\''/Organization|org-name/ {$1=""; print substr($0,2)}'\'''
-whoorg() { whois $1 | grep Organization }
+whoorg() { whois $1 | awk '/Organization|org-name/ {$1=""; print substr($0,2)}' }
