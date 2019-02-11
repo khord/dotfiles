@@ -29,7 +29,7 @@ alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); echo $e
 alias slp="pmset sleepnow"
 alias wol="wakeonlan"
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
-whoorg() { whois $1 | awk '/Organization|org-name|descr/ {$1=""; print substr($0,2)}' }
+whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName/ {$1=""; print substr($0,2)}' }
 
 # opam configuration
 test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
