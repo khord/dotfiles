@@ -27,6 +27,7 @@ alias .z=". ~/.zshrc"
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); echo $extip && whois $extip | awk '\''/Organization|org-name|descr/ {$1=""; print substr($0,2)}'\'''
 alias slp="pmset sleepnow"
+alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias wol="wakeonlan"
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName/ {$1=""; print substr($0,2)}' }
