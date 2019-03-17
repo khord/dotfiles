@@ -13,6 +13,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+zstyle ':completion:*' file-sort date
+
 DEFAULT_USER="khord"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
