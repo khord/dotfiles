@@ -1,7 +1,10 @@
-PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin
+PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin:/$GOPATH/bin
 
 export ZSH="/Users/khord/.oh-my-zsh"
 export HISTCONTROL=ignorespace
+export GOPATH="/Users/khord/go"
+export MPLBACKEND="module://itermplot"
+export ITERMPLOT=rv
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="agnoster"
