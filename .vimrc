@@ -22,6 +22,7 @@ filetype plugin on           " required
 set number
 set ruler
 set cursorline
+set hlsearch
 syntax on
 
 let g:solarized_termtrans = 1
