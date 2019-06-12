@@ -22,11 +22,12 @@ DEFAULT_USER="khord"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history)
+POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_TIME_BACKGROUND='grey50'
 POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
