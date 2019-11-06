@@ -1,10 +1,12 @@
 PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin:/$GOPATH/bin
 
+export TERM="xterm-256color"
 export ZSH="/Users/khord/.oh-my-zsh"
 export HISTCONTROL=ignorespace
 export GOPATH="/Users/khord/go"
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
+export REPORTTIME=2
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="agnoster"
@@ -39,8 +41,9 @@ alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
+flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
-whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName/ {$1=""; print substr($0,2)}' }
+whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName|NetName|Customer|OrgTechName/ {$1=""; print substr($0,2)}' | sort -u }
 
 # opam configuration
 test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
