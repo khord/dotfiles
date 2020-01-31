@@ -37,6 +37,7 @@ alias .z=". ~/.zshrc"
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias h="history"
 alias lk="open -a ScreenSaverEngine"
+alias mntbucket='open "smb://khord@bucket/data_share"'
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); if [ -z "$extip" ]; then echo "n/a"; else echo $extip && whois $extip | awk '\''/Organization|org-name|descr/ {$1=""; print substr($0,2)}'\''; fi'
 alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
