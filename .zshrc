@@ -31,6 +31,9 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
+alias 1p='eval $(op signin simspace)'
+alias 1p-laptop='echo -n $(op get item AD --fields laptop) | pbcopy'
+alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
 alias .z=". ~/.zshrc"
