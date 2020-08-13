@@ -31,18 +31,18 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
-alias 1p='eval $(op signin simspace)'
-alias 1p-laptop='echo -n $(op get item AD --fields laptop) | pbcopy'
-alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
-alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
-alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
 alias .z=". ~/.zshrc"
+alias 1p='eval $(op signin simspace)'
+alias 1plaptop='echo -n $(op get item AD --fields laptop) | pbcopy'
+alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
+alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias h="history"
 alias lk="open -a ScreenSaverEngine"
 alias mntbucket='open "smb://khord@bucket/data_share"'
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); if [ -z "$extip" ]; then echo "n/a"; else echo $extip && whois $extip | awk '\''/Organization|org-name|descr/ {$1=""; print substr($0,2)}'\''; fi'
 alias notes="vim ~/Documents/notes"
+alias simspace="imgcat ~/Pictures/emojis/128px/Light-Blue-128px.png"
 alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
