@@ -7,6 +7,7 @@ export GOPATH="/Users/khord/go"
 export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
 export REPORTTIME=2
+export KUBE_EDITOR="vim"
 
 ZSH_THEME="powerlevel9k/powerlevel9k"
 #ZSH_THEME="agnoster"
@@ -48,6 +49,8 @@ alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
+k8s-conf() { export KUBECONFIG="${HOME}/.kube/config-kubes-$1"; kubectl config set-context --current --namespace=simspace-portal-appliance }
+k8s-psql() { kubectl exec -it $(kubectl get pod -l kind=postgres -o=jsonpath='{.items[0].metadata.name}') -- psql -U range-data-server -d range-data-server }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
