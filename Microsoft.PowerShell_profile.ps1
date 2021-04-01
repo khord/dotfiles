@@ -12,4 +12,5 @@ Set-Alias sessiondump sessiondumpf
 function esxi-ssh-disablef {Get-VMHost | %{$ssh = $($_ | Get-VMHostService | ?{$_.Key -eq "TSM-SSH"});if($ssh.Running){Write-Host "Disabling SSH on $($_.Name)"; $ssh | Stop-VMHostService -cf:$false | Out-Null}}}
 Set-Alias esxi-ssh-disable esxi-ssh-disablef
 
+Import-Module /Users/khord/repos/vmware/PowerCLI-Example-Scripts/Modules/VMware.vSphere.SsoAdmin/VMware.vSphere.SsoAdmin.psd1
 cd /Users/khord/repos/simspace/VMware-Automation

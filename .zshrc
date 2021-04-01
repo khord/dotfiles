@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin:/$GOPATH/bin
 
 export TERM="xterm-256color"
@@ -9,7 +16,7 @@ export ITERMPLOT=rv
 export REPORTTIME=2
 export KUBE_EDITOR="vim"
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="pygmalion"
 
@@ -24,6 +31,7 @@ zstyle ':completion:*' file-sort date
 DEFAULT_USER="khord"
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <(kubectl completion zsh)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir vcs)
 POWERLEVEL9K_DISABLE_RPROMPT=true
 POWERLEVEL9K_TIME_BACKGROUND='grey50'
@@ -49,8 +57,7 @@ alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
-k8s-conf() { export KUBECONFIG="${HOME}/.kube/config-kubes-$1"; kubectl config set-context --current --namespace=simspace-portal-appliance }
-k8s-psql() { kubectl exec -it $(kubectl get pod -l kind=postgres -o=jsonpath='{.items[0].metadata.name}') -- psql -U range-data-server -d range-data-server }
+k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
@@ -58,3 +65,6 @@ whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName|NetName|Custome
 
 # opam configuration
 test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
