@@ -1,3 +1,5 @@
+Set-PoshPrompt -Theme ~/dotfiles/.pwsh_p10k_lean.omp.json
+
 function lastErrorTypef {$error[0].Exception.GetType().FullName}
 Set-Alias lastErrorType lastErrorTypef
 Set-Alias cvis Connect-VIServer
