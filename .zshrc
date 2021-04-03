@@ -15,6 +15,7 @@ export MPLBACKEND="module://itermplot"
 export ITERMPLOT=rv
 export REPORTTIME=2
 export KUBE_EDITOR="vim"
+export ANSIBLE_COW_SELECTION="random"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="agnoster"
