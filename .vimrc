@@ -34,4 +34,3 @@ set background=dark
 colorscheme solarized
 highlight Visual cterm=reverse ctermbg=NONE
 set t_Co=256
-set t_kD=
