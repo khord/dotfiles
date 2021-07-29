@@ -17,6 +17,11 @@ export REPORTTIME=2
 export KUBE_EDITOR="vim"
 export ANSIBLE_COW_SELECTION="random"
 
+# kustomize
+export XDG_CONFIG_HOME=$HOME/.config
+export GPG_TTY=$(tty)
+source <(/usr/local/bin/kustomize completion zsh)
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="agnoster"
 #ZSH_THEME="pygmalion"
@@ -47,6 +52,7 @@ alias 1plaptop='echo -n $(op get item AD --fields laptop) | pbcopy'
 alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
+alias clean-downloads='rm ~/Downloads/fv-key-* ~/Downloads/*.ovpn'
 alias h="history"
 alias lk="open -a ScreenSaverEngine"
 alias mntbucket='open "smb://khord@bucket/data_share"'

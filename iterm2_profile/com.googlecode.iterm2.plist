@@ -1612,14 +1612,16 @@
 			<integer>1000</integer>
 			<key>Selected Text Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.63137254901960782</real>
+				<real>0.50980392156862742</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.63137254901960782</real>
+				<real>0.21176470588235294</real>
 				<key>Red Component</key>
-				<real>0.57647058823529407</real>
+				<real>0.82745098039215681</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
