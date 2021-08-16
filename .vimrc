@@ -23,6 +23,7 @@ set number
 set ruler
 set cursorline
 set hlsearch
+set mmp=5000
 syntax on
 
 let g:solarized_termtrans = 1

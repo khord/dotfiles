@@ -54,6 +54,7 @@ alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias clean-downloads='rm ~/Downloads/fv-key-* ~/Downloads/*.ovpn'
 alias h="history"
+alias kbeap='kustomize build --enable_alpha_plugins'
 alias lk="open -a ScreenSaverEngine"
 alias mntbucket='open "smb://khord@bucket/data_share"'
 alias myip='extip=$(dig +short myip.opendns.com @resolver1.opendns.com); if [ -z "$extip" ]; then echo "n/a"; else echo $extip && whois $extip | awk '\''/Organization|org-name|descr/ {$1=""; print substr($0,2)}'\''; fi'
