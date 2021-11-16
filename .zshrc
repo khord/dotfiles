@@ -52,7 +52,6 @@ alias 1plaptop='echo -n $(op get item AD --fields laptop) | pbcopy'
 alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
-alias clean-downloads='rm ~/Downloads/fv-key-* ~/Downloads/*.ovpn'
 alias h="history"
 alias kbeap='kustomize build --enable_alpha_plugins'
 alias lk="open -a ScreenSaverEngine"
@@ -64,8 +63,10 @@ alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
+clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
 k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
+k8s-psql-host() { kubectl exec -it svc/postgres -- hostname }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }

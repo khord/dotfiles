@@ -15,4 +15,5 @@ function esxi-ssh-disablef {Get-VMHost | %{$ssh = $($_ | Get-VMHostService | ?{$
 Set-Alias esxi-ssh-disable esxi-ssh-disablef
 
 Import-Module /Users/khord/repos/vmware/PowerCLI-Example-Scripts/Modules/VMware.vSphere.SsoAdmin/VMware.vSphere.SsoAdmin.psd1
+. /Users/khord/.local/share/powershell/Scripts/VmDeleteHistory.ps1
 cd /Users/khord/repos/simspace/VMware-Automation
