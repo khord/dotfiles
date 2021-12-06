@@ -23,11 +23,11 @@ export GPG_TTY=$(tty)
 source <(/usr/local/bin/kustomize completion zsh)
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
-#ZSH_THEME="agnoster"
-#ZSH_THEME="pygmalion"
 
 plugins=(
   git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -35,8 +35,6 @@ source $ZSH/oh-my-zsh.sh
 zstyle ':completion:*' file-sort date
 
 DEFAULT_USER="khord"
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source <(kubectl completion zsh)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time dir vcs)
 POWERLEVEL9K_DISABLE_RPROMPT=true
