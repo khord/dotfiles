@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/usr/local/opt/avr-gcc@7/bin:/$GOPATH/bin
+PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/Users/khord/dotfiles/scripts/sh:/$GOPATH/bin
 
 export TERM="xterm-256color"
 export ZSH="/Users/khord/.oh-my-zsh"

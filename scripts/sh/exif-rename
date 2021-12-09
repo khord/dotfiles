@@ -1,0 +1,13 @@
+#!/bin/bash
+
+for file in *.jpeg
+do
+  exif_time=$(mdls -name kMDItemContentCreationDate $file | awk '/=/ {print $3"_"$4}' | sed -r 's/:/-/g')
+  if [ -n "$exif_time" ]; then
+    new="${exif_time}_${file}"
+    echo "${file} -> ${new}"
+    mv $file $new
+  else
+    echo "No EXIF for ${file}"
+  fi
+done
