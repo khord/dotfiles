@@ -1,0 +1,11 @@
+! 8/8/2019 https://unifi.simspace.lan:8443
+unifi.simspace.lan##.ng-scope.ubntToast > .ubntToast__body
+unifi.simspace.lan##.ng-scope.ubntToast
+
+! 12/21/2019 https://gamepress.gg
+gamepress.gg##.is_stuck.sidebar-3-ad-desktop
+
+! 2020-09-04 https://unifi.simspace.lan:8443
+unifi.simspace.lan##.ubntToast__body
+unifi.simspace.lan##.ubntToast
+
