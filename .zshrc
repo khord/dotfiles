@@ -16,6 +16,7 @@ export ITERMPLOT=rv
 export REPORTTIME=2
 export KUBE_EDITOR="vim"
 export ANSIBLE_COW_SELECTION="random"
+export PROMPT_EOL_MARK=''
 
 # kustomize
 export XDG_CONFIG_HOME=$HOME/.config
@@ -63,8 +64,10 @@ alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
 clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
+history-old() { grep $1 ~/old-laptop/.zsh_history }
 k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
 k8s-psql-host() { kubectl exec -it svc/postgres -- hostname }
+macvendor() { curl https://api.macvendors.com/$1 }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
