@@ -68,6 +68,9 @@ cd ~/Downloads && {
 # Install Vim plugins with Vundle
 vim +PluginInstall +qall
 
+# NPM
+npm i -g md-to-pdf
+
 # Copy Viscosity VPN profiles from old laptop
 # rsync -rtvP ~/Library/Application\ Support/Viscosity/OpenVPN khord@new-laptop:/Users/khord/Downloads
 
