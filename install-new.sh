@@ -70,6 +70,7 @@ vim +PluginInstall +qall
 
 # NPM
 npm i -g md-to-pdf
+npm i -g svgexport
 
 # Copy Viscosity VPN profiles from old laptop
 # rsync -rtvP ~/Library/Application\ Support/Viscosity/OpenVPN khord@new-laptop:/Users/khord/Downloads
