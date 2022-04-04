@@ -66,6 +66,7 @@ crtchk() { openssl x509 -noout -text -in $1 }
 clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
 history-old() { grep $1 ~/old-laptop/.zsh_history }
+pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
 k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
 k8s-psql-host() { kubectl exec -it svc/postgres -- hostname }
 macvendor() { curl https://api.macvendors.com/$1 }
@@ -79,3 +80,5 @@ test -r /Users/khord/.opam/opam-init/init.zsh && . /Users/khord/.opam/opam-init/
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+eval $(thefuck --alias)
