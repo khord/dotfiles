@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/Users/khord/dotfiles/scripts/sh:/$GOPATH/bin
+PATH=$PATH:/Applications/VMware\ OVF\ Tool:/Users/khord/scripts/path:/Users/khord/dotfiles/scripts/sh:/$GOPATH/bin:${KREW_ROOT:-$HOME/.krew}/bin
 
 export TERM="xterm-256color"
 export ZSH="/Users/khord/.oh-my-zsh"
@@ -46,9 +46,9 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
 alias .z=". ~/.zshrc"
-alias 1p='eval $(op signin simspace)'
-alias 1plaptop='echo -n $(op get item AD --fields laptop) | pbcopy'
-alias 1psudo='echo -n $(op get item AD --fields laptop) | sudo -S true'
+alias 1p='eval $(op signin --account simspace.1password.com)'
+alias 1plaptop='echo -n $(op item get AD --fields laptop) | pbcopy'
+alias 1psudo='echo -n $(op item get AD --fields laptop) | sudo -S true'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias h="history"
