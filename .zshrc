@@ -69,6 +69,7 @@ history-old() { grep $1 ~/old-laptop/.zsh_history }
 pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
 k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
 k8s-psql-host() { kubectl exec -it svc/postgres -- hostname }
+kubeconfig-cert() { kubectl config view --minify --flatten -o=go-template --template='{{ index (index .users 0).user "client-certificate-data" | base64decode }}' | openssl x509 -issuer -subject -startdate -enddate -noout }
 macvendor() { curl https://api.macvendors.com/$1 }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
