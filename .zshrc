@@ -63,7 +63,7 @@ alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
 crtchk() { openssl x509 -noout -text -in $1 }
-clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" \) -delete }
+clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" -o name "*.zip" -o name "*.deb" -o name "*.pkg" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
 history-old() { grep $1 ~/old-laptop/.zsh_history }
 pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
