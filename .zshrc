@@ -62,17 +62,17 @@ alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
-crtchk() { openssl x509 -noout -text -in $1 }
+crtchk() { openssl x509 -issuer -subject -startdate -enddate -noout -in $1 }
 clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" -o -name "*.zip" -o -name "*.deb" -o -name "*.pkg" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
 history-old() { grep $1 ~/old-laptop/.zsh_history }
-pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
 k8s-psql() { kubectl exec -it svc/postgres -- psql -U postgres -d range-data-server }
 k8s-psql-host() { kubectl exec -it svc/postgres -- hostname }
 kubeconfig-cert() { kubectl config view --minify --flatten -o=go-template --template='{{ index (index .users 0).user "client-certificate-data" | base64decode }}' | openssl x509 -issuer -subject -startdate -enddate -noout }
 macvendor() { curl https://api.macvendors.com/$1 }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
+pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
 whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName|NetName|Customer|OrgTechName/ {$1=""; print substr($0,2)}' | sort -u }
 
