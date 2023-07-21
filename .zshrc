@@ -73,6 +73,7 @@ macvendor() { curl https://api.macvendors.com/$1 }
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
+ssl-web() { echo | openssl s_client -showcerts -servername $1 -connect $1:443 2>/dev/null | openssl x509 -issuer -subject -startdate -enddate -noout }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
 whoorg() { whois $1 | awk '/Organization|org-name|descr|CustName|NetName|Customer|OrgTechName/ {$1=""; print substr($0,2)}' | sort -u }
 
