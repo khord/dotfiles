@@ -51,6 +51,7 @@ alias 1plaptop='echo -n $(op item get AD --fields laptop) | pbcopy'
 alias 1psudo='echo -n $(op item get AD --fields laptop) | sudo -S true'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
+alias digs="dig +short"
 alias h="history"
 alias kbeap='kustomize build --enable_alpha_plugins'
 alias lk="open -a ScreenSaverEngine"
