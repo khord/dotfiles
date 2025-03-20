@@ -63,6 +63,8 @@ alias slp="pmset sleepnow"
 alias superscript="node ~/dotfiles/scripts/js/superscript.js"
 alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
+bucket-lib-mf() { ssh -qt bucket "cd /data/Share/VMs/Templates/simspace-content; /usr/local/bin/jq . $1" }
+bucket-lib-obj() { ssh -qt bucket "cd /data/Share/VMs/Templates/simspace-content; /usr/local/bin/jq -r '.. | .objectKey? | strings' $1 | xargs -L1 $2" }
 crtchk() { openssl x509 -issuer -subject -startdate -enddate -noout -in $1 }
 clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" -o -name "*.zip" -o -name "*.deb" -o -name "*.pkg" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
@@ -75,7 +77,8 @@ manifest-size() { jq -r '.. | .objectKey? | strings' $1 | xargs -I{} stat -f%z '
 mgmtagents() { ssh -t root@$1 "/etc/init.d/hostd restart; /etc/init.d/vpxa restart" }
 newsvg() { echo '<?xml version="1.0" encoding="utf-8"?>' >> $1; }
 pacchk() { curl -s http://127.0.0.1:8000/proxy.pac | grep -B1 -A3 $1 }
-ssl-web() { echo | openssl s_client -showcerts -servername $1 -connect $1:443 2>/dev/null | openssl x509 -issuer -subject -startdate -enddate -noout }
+ssl-sha1() { echo | openssl s_client -showcerts -connect $1:443 2> /dev/null | openssl x509 -fingerprint -sha1 -noout -in /dev/stdin | cut -d '=' -f2 }
+ssl-web() { echo | openssl s_client -showcerts -connect $1:443 2>/dev/null | openssl x509 -issuer -subject -startdate -enddate -noout }
 verylegit() { url="$(curl -s verylegit.link/sketchify -d long_url=$1)"; echo "$url copied to clipboard"; echo $url | pbcopy }
 whoorg() { whois $1 | awk '/Organization|organisation|org-name|descr|CustName|NetName|Customer|OrgTechName/ {$1=""; print substr($0,2)}' | sort -u }
 

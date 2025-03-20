@@ -24,5 +24,5 @@ cd /Users/khord/repos/simspace/VMware-Automation
 # 1password credential fetching
 zsh -c 'eval $(op signin --account simspace.1password.com)'
 $ad_user = (op item get AD --fields username)
-$ad_pass = (op item get AD --fields password) | ConvertTo-SecureString -AsPlainText -Force
+$ad_pass = (op item get AD --reveal --fields password) | ConvertTo-SecureString -AsPlainText -Force
 $ad_cred = Get-Credential $(New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $ad_user, $ad_pass)
