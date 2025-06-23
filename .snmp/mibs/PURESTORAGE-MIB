@@ -1,0 +1,796 @@
+-- **********************************************************
+-- Copyright (c) 2019 Pure Storage, Inc. All rights reserved.
+-- This source code contains confidential information and trade secrets
+-- of Pure Storage, Inc. Use, disclosure or reproduction is strictly
+-- prohibited without the prior express written permission of Pure Storage, Inc.
+-- **********************************************************
+
+PURESTORAGE-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+    MODULE-IDENTITY,
+    OBJECT-IDENTITY,
+    NOTIFICATION-TYPE,
+    OBJECT-TYPE,
+    Integer32,
+    enterprises
+        FROM SNMPv2-SMI
+    OBJECT-GROUP
+        FROM SNMPv2-CONF;
+
+purestorage MODULE-IDENTITY
+    LAST-UPDATED "202401010000Z"
+    ORGANIZATION "Pure Storage, Inc"
+    CONTACT-INFO
+        "http://www.purestorage.com/ | support@purestorage.com"
+    DESCRIPTION
+        "Pure Storage v2c/v3 SNMP MIB"
+    REVISION "202401010000Z"
+    DESCRIPTION
+        "Pure Storage Flash Blade MIB extended with data on Array identification, hardware and networking."
+    REVISION "201905090000Z"
+    DESCRIPTION
+        "Pure Storage Flash Blade MIB."
+    ::= { enterprises 40482 }
+
+pureSystem OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all managed objects relating to system identification."
+    ::= { purestorage 1 }
+
+pureNotifications OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all notifications (traps, informs)."
+    ::= { purestorage 2 }
+
+pureObjects OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all objects."
+    ::= { purestorage 3 }
+
+purePerformance OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all performance data."
+    ::= { purestorage 4 }
+
+pureHardware OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all hardware data."
+    ::= { purestorage 5 }
+ 
+pureNetwork OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all networking data."
+    ::= { purestorage 6 }
+ 
+pureNetworkPerformance OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Parent of all network performance data."
+    ::= { purestorage 7 }
+
+pureExperimental OBJECT-IDENTITY
+    STATUS  current
+    DESCRIPTION
+        "Used for product testing and development."
+    ::= { purestorage 700 }
+
+pureProductName OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Product Name."
+    ::= { pureObjects 1 }
+
+pureProductVersion OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Product Version."
+    ::= { pureObjects 2 }
+
+pureHost OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Hostname."
+    ::= { pureObjects 3 }
+
+pureAlertCode OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Alert Code."
+    ::= { pureObjects 4 }
+
+pureAlertSubject OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Alert Subject."
+    ::= { pureObjects 5 }
+
+pureAlertBody OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "Alert Body or Extra Information."
+    ::= { pureObjects 6 }
+
+pureAlertReminder OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS accessible-for-notify
+    STATUS current
+    DESCRIPTION
+        "If alert is a reminder, true(1) or false(2)."
+    ::= { pureObjects 7 }
+
+pureArrayName OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Array name. Locally unique."
+    ::= { pureSystem 1 }
+
+pureArrayId OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Array ID. Globally unique ID chosen by the system."
+    ::= { pureSystem 2 }
+
+pureArrayVersion OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Array version."
+    ::= { pureSystem 3 }
+
+pureArrayType OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Array product type.
+         For FlashBlade//S Arrays, the value is determined by the blades in the system.
+         The value will be FlashBlade for all older Arrays. Valid values are FlashBlade, FlashBlade//S, FlashBlade//S200, and FlashBladeS500."
+    ::= { pureSystem 4 }
+ 
+pureArrayCurrentTime OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Pure Storage Array's current time including time zone in the ISO 8601 format."
+    ::= { pureSystem 5 }
+
+pureArrayReadBandwidth OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "B/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array read bandwidth (bytes/s)."
+    ::= { purePerformance 1 }
+
+pureArrayWriteBandwidth OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "B/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array write bandwidth (bytes/s)."
+    ::= { purePerformance 2 }
+
+pureArrayReadIOPS OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "op/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array read IOPS (op/s)."
+    ::= { purePerformance 3 }
+
+pureArrayWriteIOPS OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "op/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array write IOPS (op/s)."
+    ::= { purePerformance 4 }
+
+pureArrayReadLatency OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "us/op"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array read latency (us/op)."
+    ::= { purePerformance 5 }
+
+pureArrayWriteLatency OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "us/op"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array write latency (us/op)."
+    ::= { purePerformance 6 }
+
+pureArrayAverageOperationSize OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "B"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array average operation size (bytes)."
+    ::= { purePerformance 7 }
+
+pureArrayAverageReadSize OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "B"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array average read size in bytes per read operation (bytes)."
+    ::= { purePerformance 8 }
+
+pureArrayAverageWriteSize OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "B"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array average write size in bytes per write operation (bytes)."
+    ::= { purePerformance 9 }
+
+pureArrayOtherIOPS OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "op/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array other operations processed per second (op/s)."
+    ::= { purePerformance 10 }
+
+pureArrayOtherLatency OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "us/op"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array other latency (us/op)."
+    ::= { purePerformance 11 }
+
+pureInfoTrap NOTIFICATION-TYPE
+    OBJECTS { pureProductName, pureProductVersion, pureHost, pureAlertCode, pureAlertSubject, pureAlertBody }
+    STATUS current
+    DESCRIPTION
+        "Info Trap."
+    ::= { pureNotifications 50 }
+
+pureWarningTrap NOTIFICATION-TYPE
+    OBJECTS { pureProductName, pureProductVersion, pureHost, pureAlertCode, pureAlertSubject, pureAlertBody }
+    STATUS current
+    DESCRIPTION
+        "Warning Trap."
+    ::= { pureNotifications 51 }
+
+pureCriticalTrap NOTIFICATION-TYPE
+    OBJECTS { pureProductName, pureProductVersion, pureHost, pureAlertCode, pureAlertSubject, pureAlertBody }
+    STATUS current
+    DESCRIPTION
+        "Critical Trap."
+    ::= { pureNotifications 52 }
+
+pureHardwareTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureHardwareEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the configuration of different hardware components on the Array."
+    ::= { pureHardware 1 }
+
+pureHardwareEntry OBJECT-TYPE
+    SYNTAX PureHardwareEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureHardwareName }  
+    ::= { pureHardwareTable 1 }
+
+PureHardwareEntry ::= SEQUENCE {
+    pureHardwareName          OCTET STRING(SIZE (0..64)),
+    pureHardwareStatus        OCTET STRING,
+    pureHardwareSlot          Integer32,
+    pureHardwareModel         OCTET STRING,
+    pureHardwareSerialNumber  OCTET STRING,
+    pureHardwareType          OCTET STRING
+}
+
+pureHardwareName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS mandatory
+    DESCRIPTION
+        "Hardware component name - a locally unique value for identifying each PureHardwareEntry."
+    ::= { pureHardwareEntry 1 }
+
+pureHardwareStatus OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Hardware component status.
+         Valid values are critical, healthy, identifying, unhealthy, unknown, and unused."
+    ::= { pureHardwareEntry 2 }
+ 
+pureHardwareSlot OBJECT-TYPE
+    SYNTAX Integer32
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Slot number occupied by the PCI Express card that hosts the component."
+    ::= { pureHardwareEntry 3 }
+ 
+pureHardwareModel OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Model number of the hardware component."
+    ::= { pureHardwareEntry 4 }
+
+pureHardwareSerialNumber OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Serial number of the hardware component."
+    ::= { pureHardwareEntry 5 }
+
+pureHardwareType OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Type of hardware component.
+        Valid values are bay, ch, eth, fan, fb, fm, pwr, and xfm."
+    ::= { pureHardwareEntry 6 }
+
+pureDNSTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureDNSEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the DNS configuration on the Array."
+    ::= { pureNetwork 1 }
+ 
+pureDNSEntry OBJECT-TYPE
+    SYNTAX PureDNSEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureDNSName }
+    ::= { pureDNSTable 1 }
+ 
+PureDNSEntry ::= SEQUENCE {
+    pureDNSName       OCTET STRING (SIZE (0..64)),
+    pureDNSDomain     OCTET STRING,
+    pureDNSServers    OCTET STRING 
+}
+
+pureDNSName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "DNS Name - a locally unique value for identifying each PureDNSEntry."
+    ::= { pureDNSEntry 1 }
+
+pureDNSDomain OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Domain suffix to be appended by the Array when performing DNS lookups."
+    ::= { pureDNSEntry 2 }
+
+pureDNSServers OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Comma separated list of DNS server IP addresses in a string format."
+    ::= { pureDNSEntry 3 }
+
+pureLAGTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureLAGEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the Link Aggregation Groups on the Array. 
+        Configuration information for a combination of physical ports grouped together into an aggregated-port."
+    ::= { pureNetwork 2 }
+
+pureLAGEntry OBJECT-TYPE
+    SYNTAX PureLAGEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureLAGName }  
+    ::= { pureLAGTable 1 }
+ 
+PureLAGEntry ::= SEQUENCE {
+    pureLAGName                 OCTET STRING (SIZE (0..64)),
+    pureLAGStatus               OCTET STRING,
+    pureLAGPorts                OCTET STRING,
+    pureLAGPortSpeed            OCTET STRING,
+    pureLAGSpeed                OCTET STRING
+}
+
+pureLAGName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the Link Aggregation Group - a locally unique value for identifying each PureLAGEntry."
+    ::= { pureLAGEntry 1 }
+ 
+pureLAGStatus OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Health status of the LAG.
+         Valid values are critical, healthy, identifying, unclaimed, unhealthy, unrecognized, and unused."
+    ::= { pureLAGEntry 2 }
+ 
+pureLAGPorts OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Comma separated list of ports associated with this LAG. 
+          Values over 255 characters are truncated and end with elipses. 
+          For full list of ports mapped to their respective LAGs, see purePortToLAGTable. "
+    ::= { pureLAGEntry 3 }
+
+pureLAGPortSpeed OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "bits/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Configured speed of each port in the LAG in bits per second."
+    ::= { pureLAGEntry 4 }
+ 
+pureLAGSpeed OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "bits/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Combined speed of all ports in the LAG in bits per second."
+    ::= { pureLAGEntry 5 } 
+
+purePortToLAGTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PurePortToLAGEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing ports with reference to their respective LAG. 
+         This table only indicates the port to LAG relationship, for port configuration refer to the PureHardwareTable."
+    ::= { pureNetwork 3 }
+
+purePortToLAGEntry OBJECT-TYPE
+    SYNTAX PurePortToLAGEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED purePortName }  
+    ::= { purePortToLAGTable 1 }
+ 
+PurePortToLAGEntry ::= SEQUENCE {
+    purePortName                 OCTET STRING (SIZE (0..64)),
+    purePortLAGName               OCTET STRING,
+}
+
+purePortName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the port - a locally unique value for identifying each PurePortToLAGEntry."
+    ::= { purePortToLAGEntry 1 }
+ 
+purePortLAGName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the LAG that the port is associated with."
+    ::= { purePortToLAGEntry 2 }
+ 
+pureSubnetTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureSubnetEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the Subnet Configurations on the Array."
+    ::= { pureNetwork 4 }
+ 
+pureSubnetEntry OBJECT-TYPE
+    SYNTAX PureSubnetEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureSubnetName }
+    ::= { pureSubnetTable 1 }
+ 
+PureSubnetEntry ::= SEQUENCE {
+    pureSubnetName       OCTET STRING (SIZE (0..64)),
+    pureSubnetEnabled    OCTET STRING,
+    pureSubnetLAG        OCTET STRING,
+    pureSubnetServices   OCTET STRING,
+    pureSubnetInterfaces OCTET STRING
+}
+ 
+pureSubnetName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the Subnet - a locally unique value for identifying each PureSubnetEntry."
+    ::= { pureSubnetEntry 1 }
+ 
+pureSubnetEnabled OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Indicates if subnet is enabled (True) or disabled (False)."
+    ::= { pureSubnetEntry 2 }
+
+pureSubnetLAG OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the associated LAG."
+    ::= { pureSubnetEntry 3 }
+ 
+pureSubnetServices OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Comma separated list of services provided by this subnet, as inherited from all of its interfaces.
+         Valid values are data, management, replication, and support."
+    ::= { pureSubnetEntry 4 }
+
+pureSubnetInterfaces OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Comma separated list of network interfaces associated with this subnet. 
+          Values over 255 characters are truncated and end with elipses. 
+          For full list of interfaces, see pureNetworkInterfaceTable. "
+    ::= { pureSubnetEntry 5 }
+
+pureNetworkInterfaceTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureNetworkInterfaceEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the network interface configurations on the Array."
+    ::= { pureNetwork 5 }
+ 
+pureNetworkInterfaceEntry OBJECT-TYPE
+    SYNTAX PureNetworkInterfaceEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureNetworkInterfaceName }  
+    ::= { pureNetworkInterfaceTable 1 }
+ 
+PureNetworkInterfaceEntry ::= SEQUENCE {
+    pureNetworkInterfaceName       OCTET STRING (SIZE (0..64)),
+    pureNetworkInterfaceEnabled    OCTET STRING,
+    pureNetworkInterfaceSubnetName OCTET STRING,
+    pureNetworkInterfaceServices   OCTET STRING
+}
+
+pureNetworkInterfaceName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Name of the Interface - a locally unique value for identifying each PureNetworkInterfaceEntry."
+    ::= { pureNetworkInterfaceEntry 1 }
+ 
+pureNetworkInterfaceEnabled OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Indicates if the specified network interface is enabled (True) or disabled (False)."
+    ::= { pureNetworkInterfaceEntry 2 }
+
+pureNetworkInterfaceSubnetName OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Subnet associated with the network interface."
+    ::= { pureNetworkInterfaceEntry 3 }
+
+pureNetworkInterfaceServices OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Services and protocols that are enabled on the interface.
+        Valid values are data, management, replication, and support."
+    ::= { pureNetworkInterfaceEntry 4 }
+ 
+pureHardwareConnectorTable OBJECT-TYPE
+    SYNTAX SEQUENCE OF PureHardwareConnectorEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    DESCRIPTION
+        "Table containing the hardware connectors information on the Array."
+    ::= { pureNetwork 6 }
+
+pureHardwareConnectorEntry OBJECT-TYPE
+    SYNTAX PureHardwareConnectorEntry
+    MAX-ACCESS not-accessible
+    STATUS current
+    INDEX { IMPLIED pureHardwareConnectorName }  
+    ::= { pureHardwareConnectorTable 1 }
+ 
+PureHardwareConnectorEntry ::= SEQUENCE {
+    pureHardwareConnectorName             OCTET STRING (SIZE (0..64)),
+    pureHardwareConnectorType             OCTET STRING,
+    pureHardwareConnectorLaneSpeed        OCTET STRING,
+    pureHardwareConnectorTransceiverType  OCTET STRING 
+}
+
+pureHardwareConnectorName OBJECT-TYPE
+    SYNTAX OCTET STRING (SIZE (0..64))
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Hardware connector name - a locally unique value for identifying each PureHardwareConnectorEntry."
+    ::= { pureHardwareConnectorEntry 1 }
+ 
+pureHardwareConnectorType OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Form-factor of the interface. Valid values include QSFP and RJ-45."
+    ::= { pureHardwareConnectorEntry 2 }
+ 
+pureHardwareConnectorLaneSpeed OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "bits/s"   
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Configured speed of each lane in the connector in bits per second."
+    ::= { pureHardwareConnectorEntry 3 }
+ 
+pureHardwareConnectorTransceiverType OBJECT-TYPE
+    SYNTAX OCTET STRING
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Details about the transceiver which is plugged into the connector port.
+        Transceiver type is not applicable for RJ-45 connectors."
+    ::= { pureHardwareConnectorEntry 4 }
+
+pureCRCErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array Cyclic Redundancy Check errors per second."
+    ::= { pureNetworkPerformance 1 }
+ 
+pureFrameErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array packet frame errors per second."
+    ::= { pureNetworkPerformance 2 }
+ 
+ 
+pureCarrierErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array transmission carrier errors per second."
+    ::= { pureNetworkPerformance 3 }
+ 
+pureDroppedErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array transmitted packets dropped per second."
+    ::= { pureNetworkPerformance 4 }
+ 
+pureOtherErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Array other Errors per second"
+    ::= { pureNetworkPerformance 5 }
+ 
+pureTotalErrors OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Errors/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "The sum of all reception and transmission errors per second."
+    ::= { pureNetworkPerformance 6 }
+
+pureReceivedBytes OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Bytes/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Bytes received per second."
+    ::= { pureNetworkPerformance 7 }
+
+pureTransmittedBytes OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Bytes/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Bytes transmitted per second."
+    ::= { pureNetworkPerformance 8 }
+
+pureReceivedPackets OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Packets/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Packets received per second."
+    ::= { pureNetworkPerformance 9 }
+
+pureTransmittedPackets OBJECT-TYPE
+    SYNTAX OCTET STRING
+    UNITS  "Packets/s"
+    MAX-ACCESS read-only
+    STATUS current
+    DESCRIPTION
+        "Packets transmitted per second."
+    ::= { pureNetworkPerformance 10 }
+
+END
+
