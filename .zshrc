@@ -47,8 +47,8 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M}"
 
 alias .z=". ~/.zshrc"
 alias 1p='eval $(op signin --account simspace.1password.com)'
-alias 1plaptop='echo -n $(op item get AD --fields laptop) | pbcopy'
-alias 1psudo='echo -n $(op item get AD --fields laptop) | sudo -S true'
+alias 1plaptop='op read op://Employee/AD/laptop | pbcopy'
+alias 1psudo='echo $(op item get AD --fields laptop --reveal) | sudo -S "$@"'
 alias bbd="(cd /Users/khord/dotfiles && exec brew bundle dump --force)"
 alias boo="imgcat ~/Pictures/emojis/128px/boo-icon-128px.png"
 alias digs="dig +short"
@@ -65,6 +65,7 @@ alias vundle="vim +PluginInstall +qall"
 alias wol="wakeonlan"
 bucket-lib-mf() { ssh -qt bucket "cd /data/Share/VMs/Templates/simspace-content; /usr/local/bin/jq . $1" }
 bucket-lib-obj() { ssh -qt bucket "cd /data/Share/VMs/Templates/simspace-content; /usr/local/bin/jq -r '.. | .objectKey? | strings' $1 | xargs -L1 $2" }
+cf-check() { curl -sH "accept: application/dns-json" "https://cloudflare-dns.com/dns-query?name=$1" | (echo -e "NAME\tTYPE\tTTL\tDATA"; jq -r '.Answer[] | [.name, .type, .TTL, .data] | @tsv') | column -t -s $'\t' }
 crtchk() { openssl x509 -issuer -subject -startdate -enddate -noout -in $1 }
 clean-downloads() { find ~/Downloads -type f \( -name "fv-key-*" -o -name "*.ovpn" -o -name "*.dmg" -o -name "*.msi" -o -name "*.bundle" -o -name "*.zip" -o -name "*.deb" -o -name "*.pkg" \) -delete }
 flyfi-stats() { curl -s http://www.flyfi.com/travel/ | awk '/flightAltitude|flightSpeed/ {print $2}' | tr -d "</span></li>" }
